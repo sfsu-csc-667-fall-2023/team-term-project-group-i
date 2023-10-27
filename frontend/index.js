@@ -1,5 +1,5 @@
-import { thingIsDone } from "./temp/other"
+import { doAThing } from "./temp/other";
 
 console.log("hi");
 
-thingIsDone("Hello there");
+doAThing("hello"); 

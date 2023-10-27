@@ -1,5 +1,5 @@
-const thingIsDone = (param) => {
+const doAThing = (param) => {
     console.log(`Logging ${param} from other`)
 }
 
-export { thingIsDone }
+export { doAThing }

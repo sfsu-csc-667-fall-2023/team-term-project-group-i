@@ -1,7 +1,4 @@
 {
-    "ext": "js,hbs",
-    "ignore": [
-    "backend/static"
-    ]
-   } 
-   
+    "ext": "js,ejs",
+    "ignore": ["backend/static"]
+}
