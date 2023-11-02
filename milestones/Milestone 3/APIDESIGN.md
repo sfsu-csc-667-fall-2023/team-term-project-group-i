@@ -4,12 +4,11 @@
 |                     | 2. game_title         |                               | 2. player_id is added to game_id                |                                 |
 |                     | 3. numb_players       |                               | 3. Player is moved into the game’s waiting room |                                 |
 | ------------------- | --------------------- | ----------------------------- | ----------------------------------------------- | ------------------------------- |
-| User Rolls Dice     | 1. player_id          | 1. player_id is the player’s  | 1. dice_1 & dice_2 get a random number from 1   |                                 |
-|                     | 2. dice_1             | in game id                    | to 6                                            |                                 |
-|                     | 3. dice_2             | 2. It has to be the           | 2. Player_location will increase by the sum of  |                                 |
-|                     | 3. player_location    | player_id’s turn              | dice_1 & dice_2                                 |                                 |
-|                     |                       |                               | 3. If the dice have matching numbers the player |                                 |
-|                     |                       |                               | rolls again                                     |                                 |
+| User Rolls Dice     | 1. player_id          | 1. player_id is the player’s in game id | 1. dice_1 & dice_2 get a random number from 1 to 6 |                                 |
+|                     | 2. dice_1             |                               |                                                 |                                 |
+|                     | 3. dice_2             | 2. It has to be the player_id’s turn | 2. Player_location will increase by the sum of dice_1 & dice_2 |                                 |
+|                     | 3. player_location    |                               |                                  |                                 |
+|                     |                       |                               | 3. If the dice have matching numbers the player rolls again |                                 |
 | ------------------- | --------------------- | ----------------------------- | ----------------------------------------------- | ------------------------------- |
 | User Passes Go      | 1. player_id          | 1. It has to be the           | 1. Player passes by go (maybe determined by     |                                 |
 |                     | 2. player_location    | player_id’s turn              | space_id)                                       |                                 |
