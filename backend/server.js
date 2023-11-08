@@ -1,10 +1,11 @@
-require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const testRoutes = require("./routes/test/index.js");
+
+require("dotenv").config();
 
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
