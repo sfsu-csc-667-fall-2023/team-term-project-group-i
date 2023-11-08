@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const testRoutes = require("./routes/test/index.js");
 
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
@@ -13,6 +15,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
