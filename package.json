@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:dev": "webpack --watch",
     "start:dev": "concurrently \"npm:server:dev\" \"npm:build:dev\"",
-    "server:dev": "NODE_ENV=development & nodemon ./backend/server.js",
+    "server:dev": "set NODE_ENV=development && nodemon ./backend/server.js",
     "prepare": "husky install",
     "db:create": "node-pg-migrate create --",
     "db:migrate": "node-pg-migrate up",
