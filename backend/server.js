@@ -3,7 +3,7 @@ const path = require("path");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-const testRoutes = require("./routes/test/index.js");
+//const testRoutes = require("./routes/test/index.js");
 
 require("dotenv").config();
 
@@ -16,7 +16,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/test", testRoutes);
+//app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
@@ -39,7 +39,17 @@ app.set("view engine", "ejs");
 //app.use(requestTime); for middleware to check we get response
 app.use(express.static(path.join(__dirname, "static")));
 
-app.use("/", rootRoutes);
+//app.use("/", rootRoutes);
+
+const landingRoutes = require("./routes/landing");
+const authRoutes = require("./routes/authentication");
+const globalLobbyRoutes = require("./routes/global_lobby");
+const gameRoutes = require("./routes/game");
+
+app.use("/", landingRoutes);
+app.use("/auth", authRoutes);
+app.use("/lobby", globalLobbyRoutes);
+app.use("/games", gameRoutes);
 
 app.use((_request, _response, next) => {
     next(createError(404));
