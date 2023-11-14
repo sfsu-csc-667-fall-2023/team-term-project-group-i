@@ -3,10 +3,12 @@ const path = require("path");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-//const testRoutes = require("./routes/test/index.js");
 
-require("dotenv").config();
+if (process.env.NODE_ENV === "development") {
+    require("dotenv").config();
+}
 
+const testRoutes = require("./routes/test/index.js");
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
 
@@ -16,7 +18,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use("/test", testRoutes);
+app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
@@ -31,7 +33,7 @@ if (process.env.NODE_ENV = "development") {
         }, 100);
     });
     app.use(connectLiveReload());
-} 
+}
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -57,6 +59,5 @@ app.use((_request, _response, next) => {
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
-}); 
+});
 
- 
