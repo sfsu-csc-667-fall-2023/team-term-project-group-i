@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1.0">
     <title>DOCUMENT</title>
+    <style>
+        body{
+            background-color: lightblue;
+        }
+    </style>
 </head>
 <body>
-    Sign Up Page<br><br>
-    <form>
+   
+    <center><form id = "signUpInfo">
+        <h3><a href="/" style="text-decoration:none">Landing</a></h3> <h2>Sign Up Page</h2>
         <label>Email:</label><br>   
-        <input type="text" id="email" name="email"><br>
+        <input type="text" id="email" name="email" required><br>
         <label>Username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <input type="text" id="username" name="username" required><br>
         <label>Password:</label><br>
-        <input type="text" id="password" name="password"><br>
+        <input type="text" id="password" name="password" required><br>
         <label>Confirm Password:</label><br>
-        <input type="text" id="confirmPassword" name="confirmPassword"><br>
+        <input type="text" id="confirmPassword" name="confirmPassword" required><br>
         <input type="submit" value="Submit">
-    </form>
+    </form></center>
 </body>
 </html>

@@ -4,8 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1.0">
     <title>DOCUMENT</title>
+    <style>
+        body{
+            background-color: lightblue;
+        }
+        
+        #nav{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #216ec6;
+        }
+
+        #nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    Game page for Game ID: <%=id%>
+    <ul id = "nav">
+        <li><a style="float:left">LOGO</a></li>
+        <li><a href="/" style="float:left">Landing</a></li>
+        <li><a href="/lobby" style="float:left">Lobby</a></li>
+        <li ><a style="float:right">PFP</a></li>
+        <li><a href="/auth/sign_up" style="float:right">Logout</a></li>
+    </ul>
+    
+    <h2>Game page for Game ID: <%=id%></h2>
+
+    <div id = "chat" style="float:right">
+        <form >
+          <h3>Chat</h3>
+
+          <label for="messsage">Message here</label><br>
+
+          <textarea placeholder="Type message.." name="message" required></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
+    </div>
 </body>
 </html>
