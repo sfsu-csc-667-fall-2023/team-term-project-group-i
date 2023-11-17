@@ -4,10 +4,6 @@ const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
-if (process.env.NODE_ENV === "development") {
-    require("dotenv").config();
-}
-
 const testRoutes = require("./routes/test/index.js");
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
@@ -23,10 +19,11 @@ app.use("/test", testRoutes);
 const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === "development") {
+    require("dotenv").config();
     const livereload = require("livereload");
     const connectLiveReload = require("connect-livereload");
     const liveReloadServer = livereload.createServer();
-    liveReloadServer.watch(path.join(__dirname, "backend", "static"));
+    liveReloadServer.watch(path.join(__dirname, "static"));
     liveReloadServer.server.once("connection", () => {
         setTimeout(() => {
             liveReloadServer.refresh("/");
