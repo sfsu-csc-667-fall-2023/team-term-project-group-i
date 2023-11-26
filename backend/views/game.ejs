@@ -24,6 +24,51 @@
             padding: 14px 16px;
             text-decoration: none;
         }
+
+        .board-grid {
+            float: left;
+            display: inline-grid;
+            grid-template-columns: 120px repeat(9, 99px) 120px;
+            grid-template-rows: 100px repeat(9, 99px) 100px;
+        }
+
+        .corner-tile {
+            text-align: center;
+            border: 1px solid;
+            overflow: hidden;
+        }
+
+        .tile{
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border: 1px solid;
+            overflow: hidden;
+        }
+
+        .midsquare{
+            grid-row-start: 2;
+            grid-row-end: 11;
+            grid-column-start: 2;
+            grid-column-end: 11;
+        }
+
+        .other-users{
+            float: right;
+            padding-right: 10%;
+        }
+
+        .chat{
+            float:right;
+            padding-right: 5%;
+        }
+
+        .your-stats{
+            float: right;
+            padding-right: 8%;
+        }
+
     </style>
 </head>
 <body>
@@ -35,9 +80,80 @@
         <li><a href="/auth/sign_up" style="float:right">Logout</a></li>
     </ul>
     
-    <h2>Game page for Game ID: <%=id%></h2>
+    <h2>Game ID: <%=id%></h2>
 
-    <div id = "chat" style="float:right">
+    <!--Monoploy Board-->
+    <div class = "board-grid">
+        <!-- First Row-->
+        <div class="corner-tile">Free Parking</div>
+        <div class="tile">Kentucky Avenue</div>
+        <div class="tile">Chance</div>
+        <div class="tile">Indiana Avenue</div>
+        <div class="tile">Illinois Avenue</div>
+        <div class="tile">B. & O. Railroad</div>
+        <div class="tile">Atlantic Avenue</div>
+        <div class="tile">Ventnro Avenue</div>
+        <div class="tile">Water Works</div>
+        <div class="tile">Marvin Avenue</div>
+        <div class="corner-tile">Go to Jail</div>
+
+        <!--Middle Rows-->
+        <div class="tile">New York Avenue</div>
+        <div class = "midsquare"></div> 
+        <div class="tile">Pacific Avenue</div>
+        <div class="tile">Tennessee Avenue</div>
+        <div class="tile">North Carolina Avenue</div>
+        <div class="tile">Community Chest</div>
+        <div class="tile">Community Chest</div>
+        <div class="tile">St. James Place</div>
+        <div class="tile">Pennysylvania Avenue</div>
+        <div class="tile">Pennysylvania Railroad</div>
+        <div class="tile">Short Line</div>
+        <div class="tile">Virginia Avenue</div>
+        <div class="tile">Chance</div>
+        <div class="tile">States Avenue</div>
+        <div class="tile">Park Place</div>
+        <div class="tile">Electric Company</div>
+        <div class="tile">Luxury Tax</div>
+        <div class="tile">St. Charles Place</div>
+        <div class="tile">Boardwalk</div>
+
+        <!--Last Row-->
+        <div class="corner-tile">JAIL/visiting</div>
+        <div class="tile">Connecticut Avenue</div>
+        <div class="tile">Vermont Avenue</div>
+        <div class="tile">Chance</div>
+        <div class="tile">Oriental Avenue</div>
+        <div class="tile">Reading Railroad</div>
+        <div class="tile">Income Tax</div>
+        <div class="tile">Baltic Avenue</div>
+        <div class="tile">Community Chest</div>
+        <div class="tile">Mediteranean Avenue</div>
+        <div class="corner-tile">GO!</div> 
+    </div>
+
+    <!--Bar displaying Users plus money other players have?-->
+    <div class = "other-users">
+        <h2>Player Stats</h2>
+        <ul>
+            <li>User #1: $$$</li>
+            <li>User #2: $$$</li>
+            <li>User #3: $$$</li>
+        </ul>
+    </div>
+
+    <div class = "your-stats">
+        <h2>Your Stats</h2>
+        <p>Account: $$$</p>
+        <ul>
+            <li>Property 1: Price</li>
+            <li>Property 2: Price</li>
+        </ul>
+    </div>
+
+    </div>
+
+    <div class = "chat">
         <form >
           <h3>Chat</h3>
 
