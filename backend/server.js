@@ -1,5 +1,5 @@
-const express = require("express");
 const path = require("path");
+const express = require("express");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
@@ -14,7 +14,10 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/test", testRoutes);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "static")));
+//app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
@@ -32,11 +35,10 @@ if (process.env.NODE_ENV === "development") {
     app.use(connectLiveReload());
 }
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+
 
 //app.use(requestTime); for middleware to check we get response
-app.use(express.static(path.join(__dirname, "static")));
+
 
 //app.use("/", rootRoutes);
 
