@@ -51,6 +51,7 @@ app.use("/", landingRoutes);
 app.use("/auth", authRoutes);
 app.use("/lobby", globalLobbyRoutes);
 app.use("/games", gameRoutes);
+app.use("/test", testRoutes);
 
 app.use((_request, _response, next) => {
     next(createError(404));
