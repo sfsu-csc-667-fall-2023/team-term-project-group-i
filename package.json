@@ -7,16 +7,15 @@
     "start": "node ./backend/server.js",
     "build": "webpack",
     "build:dev": "webpack --watch",
-    "start:dev": "NODE_ENV=development concurrently \"npm:server:dev\" \"npm:build:dev\"",
-    "server:dev": "nodemon ./backend/server.js",
+    "start:dev": "concurrently \"npm:server:dev\" \"npm:build:dev\"",
+    "server:dev": "NODE_ENV = development nodemon ./backend/server,js",
     "prepare": "husky install",
     "db:create": "node-pg-migrate create --",
     "db:migrate": "node-pg-migrate up",
     "db:rollback": "node-pg-migrate down"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "frontend/**/*.js": "webpack"
+    "**/*": "prettier --write --ignore-unknown"
   },
   "keywords": [],
   "author": "",
