@@ -25,7 +25,7 @@ app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV = "development") {
+if (process.env.NODE_ENV === "development") {
     //require("dotenv").config();
     const livereload = require("livereload");
     const connectLiveReload = require("connect-livereload");
