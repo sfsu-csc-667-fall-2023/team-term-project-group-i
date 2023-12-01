@@ -4,9 +4,15 @@ const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
+if (process.env.NODE_ENV === "development") {
+    require("dotenv").config();
+}
+
 const testRoutes = require("./routes/test/index.js");
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
+
+
 
 const app = express();
 app.use(morgan("dev"));
@@ -14,15 +20,13 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "static")));
-//app.use("/test", testRoutes);
+
+app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === "development") {
-    require("dotenv").config();
+if (process.env.NODE_ENV = "development") {
+    //require("dotenv").config();
     const livereload = require("livereload");
     const connectLiveReload = require("connect-livereload");
     const liveReloadServer = livereload.createServer();
@@ -34,6 +38,10 @@ if (process.env.NODE_ENV === "development") {
     });
     app.use(connectLiveReload());
 }
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "static")));
 
 
 
@@ -51,7 +59,7 @@ app.use("/", landingRoutes);
 app.use("/auth", authRoutes);
 app.use("/lobby", globalLobbyRoutes);
 app.use("/games", gameRoutes);
-app.use("/test", testRoutes);
+//app.use("/test", testRoutes);
 
 app.use((_request, _response, next) => {
     next(createError(404));
