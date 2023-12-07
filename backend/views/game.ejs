@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale=1.0">
-    <title>DOCUMENT</title>
+    <title>Game <%=id%></title>
     <style>
         body{
             background-color: lightblue;
@@ -32,12 +32,6 @@
             grid-template-rows: 100px repeat(9, 99px) 100px;
         }
 
-        .corner-tile {
-            text-align: center;
-            border: 1px solid;
-            overflow: hidden;
-        }
-
         .tile{
             text-align: center;
             width: 100%;
@@ -47,6 +41,11 @@
             overflow: hidden;
         }
 
+        .currentTile{
+            border: 5px solid purple;
+            background-color: beige;
+        }
+
         .midsquare{
             grid-row-start: 2;
             grid-row-end: 11;
@@ -54,19 +53,38 @@
             grid-column-end: 11;
         }
 
-        .other-users{
-            float: right;
-            padding-right: 10%;
+        .chestPile{
+            text-align: center;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            grid-column-start: 5;
+            grid-column-end: 8;
+            border: 5px solid;
         }
 
-        .chat{
-            float:right;
-            padding-right: 5%;
+        .chancePile{
+            text-align: center;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            grid-column-start: 5;
+            grid-column-end: 8;
+            border: 5px solid;
+        }
+
+        .other-users{
+            float: auto;
+            padding-left:81%;
         }
 
         .your-stats{
-            float: right;
-            padding-right: 8%;
+            float: auto;
+            padding-left: 81%;
+        }
+
+        .chat{
+            float: auto;
+            padding-left: 81%;
+            padding-top: 5%;
         }
 
     </style>
@@ -85,51 +103,56 @@
     <!--Monoploy Board-->
     <div class = "board-grid">
         <!-- First Row-->
-        <div class="corner-tile">Free Parking</div>
-        <div class="tile">Kentucky Avenue</div>
+        <div class="tile">Free Parking</div>
+        <div class="tile">Kentucky Avenue <p>Price:$220</p></div>
         <div class="tile">Chance</div>
-        <div class="tile">Indiana Avenue</div>
-        <div class="tile">Illinois Avenue</div>
+        <div class="tile">Indiana Avenue <p>Price:$220</p></div>
+        <div class="tile">Illinois Avenue <p>Price:$240</p></div>
         <div class="tile">B. & O. Railroad</div>
-        <div class="tile">Atlantic Avenue</div>
-        <div class="tile">Ventnro Avenue</div>
+        <div class="tile">Atlantic Avenue <p>Price:$260</p></div>
+        <div class="tile">Ventnro Avenue <p>Price:$260</p></div>
         <div class="tile">Water Works</div>
-        <div class="tile">Marvin Avenue</div>
-        <div class="corner-tile">Go to Jail</div>
+        <div class="tile">Marvin Avenue <p>Price:$280</p></div>
+        <div class="tile">Go to Jail</div>
 
         <!--Middle Rows-->
-        <div class="tile">New York Avenue</div>
-        <div class = "midsquare"></div> 
-        <div class="tile">Pacific Avenue</div>
-        <div class="tile">Tennessee Avenue</div>
-        <div class="tile">North Carolina Avenue</div>
+        <div class="tile">New York Avenue <p>Price:$200</p></div>
+
+        <!--Setting up the middle of the board. The card piles should draw cards-->
+        <div class="chestPile"><a href="">Community Chest</a></div> 
+        <div class="chancePile"><a href="">Chance</a></div>
+        <div class = "midsquare"> </div> 
+
+        <div class="tile">Pacific Avenue <p>Price:$300</p></div>
+        <div class="tile">Tennessee Avenue <p>Price:$180</p></div>
+        <div class="tile">North Carolina Avenue <p>Price:$300</p></div>
         <div class="tile">Community Chest</div>
         <div class="tile">Community Chest</div>
-        <div class="tile">St. James Place</div>
-        <div class="tile">Pennysylvania Avenue</div>
+        <div class="tile">St. James Place <p>Price:$180</p></div>
+        <div class="tile">Pennysylvania Avenue <p>Price:$320</p></div>
         <div class="tile">Pennysylvania Railroad</div>
         <div class="tile">Short Line</div>
-        <div class="tile">Virginia Avenue</div>
+        <div class="tile">Virginia Avenue <p>Price:$160</p></div>
         <div class="tile">Chance</div>
-        <div class="tile">States Avenue</div>
-        <div class="tile">Park Place</div>
+        <div class="tile">States Avenue <p>Price:$140</p></div>
+        <div class="tile">Park Place <p>Price:$350</p></div>
         <div class="tile">Electric Company</div>
         <div class="tile">Luxury Tax</div>
-        <div class="tile">St. Charles Place</div>
-        <div class="tile">Boardwalk</div>
+        <div class="tile">St. Charles Place <p>Price:$140</p></div>
+        <div class="tile">Boardwalk <p>Price:$400</p></div>
 
         <!--Last Row-->
-        <div class="corner-tile">JAIL/visiting</div>
-        <div class="tile">Connecticut Avenue</div>
-        <div class="tile">Vermont Avenue</div>
+        <div class="tile">JAIL/visiting</div>
+        <div class="tile">Connecticut Avenue <p>Price:$120</p></div>
+        <div class="tile">Vermont Avenue <p>Price:$100</p></div>
         <div class="tile">Chance</div>
-        <div class="tile">Oriental Avenue</div>
+        <div class="tile">Oriental Avenue <p>Price:$100</p></div>
         <div class="tile">Reading Railroad</div>
         <div class="tile">Income Tax</div>
-        <div class="tile">Baltic Avenue</div>
+        <div class="tile">Baltic Avenue <p>Price:$60</p></div>
         <div class="tile">Community Chest</div>
-        <div class="tile">Mediteranean Avenue</div>
-        <div class="corner-tile">GO!</div> 
+        <div class="tile">Mediteranean Avenue <p>Price:$60</p></div>
+        <div class="currentTile">GO!</div> 
     </div>
 
     <!--Bar displaying Users plus money other players have?-->
@@ -163,5 +186,7 @@
           <button type="submit" class="btn">Send</button>
         </form>
     </div>
+
+    <div></div>
 </body>
 </html>
