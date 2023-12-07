@@ -1,98 +1,108 @@
 <!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
     <title>Global Lobby</title>
     <style>
-        body{
-            background-color: lightblue;
-        }
-        
-        #nav{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: auto;
-            overflow: hidden;
-            background-color: #216ec6;
-        }
+      body {
+        background-color: lightblue;
+      }
 
-        #nav li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+      #nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        overflow: hidden;
+        background-color: #216ec6;
+      }
 
-        .row {margin: 0 -5px;}
+      #nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
 
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+      .row {
+        margin: 0 -5px;
+      }
 
-        .column {
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .column {
         float: left;
         width: 15%;
         padding: 0 10px;
-        }
+      }
 
-        @media screen and (max-width: 600px) {
+      @media screen and (max-width: 600px) {
         .column {
-            width: 100%;
-            display: block;
-            margin-bottom: 20px;
+          width: 100%;
+          display: block;
+          margin-bottom: 20px;
         }
-        }
+      }
 
-        .card{
-            padding: 16px;
-            text-align: center;
-            background-color: rgb(96, 173, 199);
-        }
+      .card {
+        padding: 16px;
+        text-align: center;
+        background-color: rgb(96, 173, 199);
+      }
     </style>
-</head>
-<body>
-    <ul id = "nav">
-        <li><a style="float:left">Monopoly</a></li>
-        <li><a href="/" style="float:left">Landing</a></li>
-        <li><a href="/lobby" style="float:left">Lobby</a></li>
-        <li ><a style="float:right">Username</a></li>
-        <li><a href="auth/sign_up" style="float:right">Logout</a></li>
+  </head>
+  <body>
+    <ul id="nav">
+      <li><a style="float: left">Monopoly</a></li>
+      <li><a href="/" style="float: left">Landing</a></li>
+      <li><a href="/lobby" style="float: left">Lobby</a></li>
+      <li><a style="float: right">Username</a></li>
+      <li><a href="auth/sign_up" style="float: right">Logout</a></li>
     </ul>
 
     <h2>Global Lobby Page: Global Chat, Room Creation, & Joining Games</h2>
 
     <center>
-    <form id = "creatingNewGame">
+      <form id="creatingNewGame">
         <label>Create a Game: </label>
-        <input type="text" id = "newGame" name="newGame" placeholder="New Game Name...">
-        <input type="submit" value="Submit">
-    </form>
-    <h3>Available Games:</h3>
+        <input
+          type="text"
+          id="newGame"
+          name="newGame"
+          placeholder="New Game Name..."
+        />
+        <input type="submit" value="Submit" />
+      </form>
+      <h3>Available Games:</h3>
     </center>
 
     <!-- Make a new card per available game?    -->
     <div class="row">
-        <div class="column">
-          <div class="card">
-            <h3><a href="/games/33" style="text-decoration:none">Game 33</a></h3>
-            <p>Information...</p>
+      <div class="column">
+        <div class="card">
+          <h3><a href="/games/33" style="text-decoration: none">Game 33</a></h3>
+          <p>Information...</p>
         </div>
+      </div>
     </div>
-    
-    <div id = "chat" style="float:right">
-        <form >
-          <h3>Chat</h3>
 
-          <label for="messsage">Message here</label><br>
-
-          <textarea placeholder="Type message.." name="message" required></textarea>
-          <button type="submit" class="btn">Send</button>
-        </form>
+    <div id="chat" style="float: right">
+      <form>
+        <h3>Chat</h3>
+        <label for="messsage">Message here</label><br />
+        <textarea
+          placeholder="Type message.."
+          name="message"
+          required
+        ></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
     </div>
-</body>
+  </body>
 </html>

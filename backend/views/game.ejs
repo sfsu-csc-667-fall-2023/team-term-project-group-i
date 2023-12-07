@@ -1,232 +1,297 @@
 <!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width = device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width = device-width, initial-scale=1.0" />
     <title>Game <%=id%></title>
     <style>
-        body{
-            background-color: lightblue;
-        }
-        
-        #nav{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #216ec6;
-        }
+      body {
+        background-color: lightblue;
+      }
 
-        #nav li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
+      #nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #216ec6;
+      }
 
-        .board-grid {
-            float: left;
-            display: inline-grid;
-            grid-template-columns: 120px repeat(9, 99px) 120px;
-            grid-template-rows: 100px repeat(9, 99px) 100px;
-        }
+      #nav li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
 
-        .tile{
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            border: 1px solid;
-            overflow: hidden;
-        }
+      .board-grid {
+        float: left;
+        display: inline-grid;
+        grid-template-columns: 120px repeat(9, 99px) 120px;
+        grid-template-rows: 100px repeat(9, 99px) 100px;
+      }
 
-        .currentTile{
-            border: 5px solid purple;
-            background-color: beige;
-        }
+      .tile {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border: 1px solid;
+        overflow: hidden;
+      }
 
-        .midsquare{
-            grid-row-start: 2;
-            grid-row-end: 11;
-            grid-column-start: 2;
-            grid-column-end: 11;
-        }
+      .currentTile {
+        border: 5px solid purple;
+        background-color: beige;
+      }
 
-        .chestPile{
-            text-align: center;
-            grid-row-start: 3;
-            grid-row-end: 4;
-            grid-column-start: 5;
-            grid-column-end: 8;
-            border: 5px solid;
-        }
+      .midsquare {
+        grid-row-start: 2;
+        grid-row-end: 11;
+        grid-column-start: 2;
+        grid-column-end: 11;
+      }
 
-        .chancePile{
-            text-align: center;
-            grid-row-start: 9;
-            grid-row-end: 10;
-            grid-column-start: 5;
-            grid-column-end: 8;
-            border: 5px solid;
-        }
+      .chestPile {
+        text-align: center;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-start: 5;
+        grid-column-end: 8;
+        border: 5px solid;
+      }
 
-        .buyOption{
-            text-align: center;
-            grid-row-start: 6;
-            grid-row-end: 7;
-            grid-column-start: 3;
-            grid-column-end: 4;
-            border: 2px solid;
-        }
+      .chancePile {
+        text-align: center;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        grid-column-start: 5;
+        grid-column-end: 8;
+        border: 5px solid;
+      }
 
-        .tradeOption{
-            text-align: center;
-            grid-row-start: 6;
-            grid-row-end: 7;
-            grid-column-start: 5;
-            grid-column-end: 6;
-            border: 2px solid;
-        }
+      .buyOption {
+        text-align: center;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        grid-column-start: 3;
+        grid-column-end: 4;
+        border: 2px solid;
+      }
 
-        .sellOption{
-            text-align: center;
-            grid-row-start: 6;
-            grid-row-end: 7;
-            grid-column-start: 7;
-            grid-column-end: 8;
-            border: 2px solid;
-        }
+      .tradeOption {
+        text-align: center;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        grid-column-start: 5;
+        grid-column-end: 6;
+        border: 2px solid;
+      }
 
-        .manageOption{
-            text-align: center;
-            grid-row-start: 6;
-            grid-row-end: 7;
-            grid-column-start: 9;
-            grid-column-end: 10;
-            border: 2px solid;
-        }
+      .sellOption {
+        text-align: center;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        grid-column-start: 7;
+        grid-column-end: 8;
+        border: 2px solid;
+      }
 
-        .other-users{
-            float: auto;
-            padding-left:81%;
-        }
+      .manageOption {
+        text-align: center;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        grid-column-start: 9;
+        grid-column-end: 10;
+        border: 2px solid;
+      }
 
-        .your-stats{
-            float: auto;
-            padding-left: 81%;
-        }
+      .other-users {
+        float: auto;
+        padding-left: 81%;
+      }
 
-        .chat{
-            float: auto;
-            padding-left: 81%;
-            padding-top: 5%;
-        }
+      .your-stats {
+        float: auto;
+        padding-left: 81%;
+      }
 
+      .chat {
+        float: auto;
+        padding-left: 81%;
+        padding-top: 5%;
+      }
     </style>
-</head>
-<body>
-    <ul id = "nav">
-        <li><a style="float:left">Monopoly</a></li>
-        <li><a href="/" style="float:left">Landing</a></li>
-        <li><a href="/lobby" style="float:left">Lobby</a></li>
-        <li ><a style="float:right">Username</a></li>
-        <li><a href="/auth/sign_up" style="float:right">Logout</a></li>
+  </head>
+  <body>
+    <ul id="nav">
+      <li><a style="float: left">Monopoly</a></li>
+      <li><a href="/" style="float: left">Landing</a></li>
+      <li><a href="/lobby" style="float: left">Lobby</a></li>
+      <li><a style="float: right">Username</a></li>
+      <li><a href="/auth/sign_up" style="float: right">Logout</a></li>
     </ul>
-    
+
     <h2>Game ID: <%=id%></h2>
 
     <!--Monoploy Board-->
-    <div class = "board-grid">
-        <!-- First Row-->
-        <div class="tile">Free Parking</div>
-        <div class="tile">Kentucky Avenue <p>Price:$220</p></div>
-        <div class="tile">Chance</div>
-        <div class="tile">Indiana Avenue <p>Price:$220</p></div>
-        <div class="tile">Illinois Avenue <p>Price:$240</p></div>
-        <div class="tile">B. & O. Railroad</div>
-        <div class="tile">Atlantic Avenue <p>Price:$260</p></div>
-        <div class="tile">Ventnro Avenue <p>Price:$260</p></div>
-        <div class="tile">Water Works</div>
-        <div class="tile">Marvin Avenue <p>Price:$280</p></div>
-        <div class="tile">Go to Jail</div>
+    <div class="board-grid">
+      <!-- First Row-->
+      <div class="tile">Free Parking</div>
+      <div class="tile">
+        Kentucky Avenue
+        <p>Price:$220</p>
+      </div>
+      <div class="tile">Chance</div>
+      <div class="tile">
+        Indiana Avenue
+        <p>Price:$220</p>
+      </div>
+      <div class="tile">
+        Illinois Avenue
+        <p>Price:$240</p>
+      </div>
+      <div class="tile">B. & O. Railroad</div>
+      <div class="tile">
+        Atlantic Avenue
+        <p>Price:$260</p>
+      </div>
+      <div class="tile">
+        Ventnro Avenue
+        <p>Price:$260</p>
+      </div>
+      <div class="tile">Water Works</div>
+      <div class="tile">
+        Marvin Avenue
+        <p>Price:$280</p>
+      </div>
+      <div class="tile">Go to Jail</div>
 
-        <!--Middle Rows-->
-        <div class="tile">New York Avenue <p>Price:$200</p></div>
+      <!--Middle Rows-->
+      <div class="tile">
+        New York Avenue
+        <p>Price:$200</p>
+      </div>
 
-        <!--Setting up the middle of the board. The card piles should draw cards-->
-        <div class="chestPile"><a href="">Community Chest</a></div> 
-        <div class="chancePile"><a href="">Chance</a></div>
-        <div class="buyOption">Buy</div>
-        <div class="tradeOption">Trade</div>
-        <div class="sellOption">Sell</div>
-        <div class="manageOption">Manage</div>
-        <div class = "midsquare"> </div> 
+      <!--Setting up the middle of the board. The card piles should draw cards-->
+      <div class="chestPile"><a href="">Community Chest</a></div>
+      <div class="chancePile"><a href="">Chance</a></div>
+      <div class="buyOption">Buy</div>
+      <div class="tradeOption">Trade</div>
+      <div class="sellOption">Sell</div>
+      <div class="manageOption">Manage</div>
+      <div class="midsquare"></div>
 
-        <div class="tile">Pacific Avenue <p>Price:$300</p></div>
-        <div class="tile">Tennessee Avenue <p>Price:$180</p></div>
-        <div class="tile">North Carolina Avenue <p>Price:$300</p></div>
-        <div class="tile">Community Chest</div>
-        <div class="tile">Community Chest</div>
-        <div class="tile">St. James Place <p>Price:$180</p></div>
-        <div class="tile">Pennysylvania Avenue <p>Price:$320</p></div>
-        <div class="tile">Pennysylvania Railroad</div>
-        <div class="tile">Short Line</div>
-        <div class="tile">Virginia Avenue <p>Price:$160</p></div>
-        <div class="tile">Chance</div>
-        <div class="tile">States Avenue <p>Price:$140</p></div>
-        <div class="tile">Park Place <p>Price:$350</p></div>
-        <div class="tile">Electric Company</div>
-        <div class="tile">Luxury Tax</div>
-        <div class="tile">St. Charles Place <p>Price:$140</p></div>
-        <div class="tile">Boardwalk <p>Price:$400</p></div>
+      <div class="tile">
+        Pacific Avenue
+        <p>Price:$300</p>
+      </div>
+      <div class="tile">
+        Tennessee Avenue
+        <p>Price:$180</p>
+      </div>
+      <div class="tile">
+        North Carolina Avenue
+        <p>Price:$300</p>
+      </div>
+      <div class="tile">Community Chest</div>
+      <div class="tile">Community Chest</div>
+      <div class="tile">
+        St. James Place
+        <p>Price:$180</p>
+      </div>
+      <div class="tile">
+        Pennysylvania Avenue
+        <p>Price:$320</p>
+      </div>
+      <div class="tile">Pennysylvania Railroad</div>
+      <div class="tile">Short Line</div>
+      <div class="tile">
+        Virginia Avenue
+        <p>Price:$160</p>
+      </div>
+      <div class="tile">Chance</div>
+      <div class="tile">
+        States Avenue
+        <p>Price:$140</p>
+      </div>
+      <div class="tile">
+        Park Place
+        <p>Price:$350</p>
+      </div>
+      <div class="tile">Electric Company</div>
+      <div class="tile">Luxury Tax</div>
+      <div class="tile">
+        St. Charles Place
+        <p>Price:$140</p>
+      </div>
+      <div class="tile">
+        Boardwalk
+        <p>Price:$400</p>
+      </div>
 
-        <!--Last Row-->
-        <div class="tile">JAIL/visiting</div>
-        <div class="tile">Connecticut Avenue <p>Price:$120</p></div>
-        <div class="tile">Vermont Avenue <p>Price:$100</p></div>
-        <div class="tile">Chance</div>
-        <div class="tile">Oriental Avenue <p>Price:$100</p></div>
-        <div class="tile">Reading Railroad</div>
-        <div class="tile">Income Tax</div>
-        <div class="tile">Baltic Avenue <p>Price:$60</p></div>
-        <div class="tile">Community Chest</div>
-        <div class="tile">Mediteranean Avenue <p>Price:$60</p></div>
-        <div class="currentTile">GO!</div> 
+      <!--Last Row-->
+      <div class="tile">JAIL/visiting</div>
+      <div class="tile">
+        Connecticut Avenue
+        <p>Price:$120</p>
+      </div>
+      <div class="tile">
+        Vermont Avenue
+        <p>Price:$100</p>
+      </div>
+      <div class="tile">Chance</div>
+      <div class="tile">
+        Oriental Avenue
+        <p>Price:$100</p>
+      </div>
+      <div class="tile">Reading Railroad</div>
+      <div class="tile">Income Tax</div>
+      <div class="tile">
+        Baltic Avenue
+        <p>Price:$60</p>
+      </div>
+      <div class="tile">Community Chest</div>
+      <div class="tile">
+        Mediteranean Avenue
+        <p>Price:$60</p>
+      </div>
+      <div class="currentTile">GO!</div>
     </div>
 
     <!--Bar displaying Users plus money other players have?-->
-    <div class = "other-users">
-        <h2>Player Stats</h2>
-        <ul>
-            <li>User #1: $$$</li>
-            <li>User #2: $$$</li>
-            <li>User #3: $$$</li>
-        </ul>
+    <div class="other-users">
+      <h2>Player Stats</h2>
+      <ul>
+        <li>User #1: $$$</li>
+        <li>User #2: $$$</li>
+        <li>User #3: $$$</li>
+      </ul>
     </div>
 
-    <div class = "your-stats">
-        <h2>Your Stats</h2>
-        <p>Account: $$$</p>
-        <ul>
-            <li>Property 1: Price</li>
-            <li>Property 2: Price</li>
-        </ul>
+    <div class="your-stats">
+      <h2>Your Stats</h2>
+      <p>Account: $$$</p>
+      <ul>
+        <li>Property 1: Price</li>
+        <li>Property 2: Price</li>
+      </ul>
     </div>
 
+    <div class="chat">
+      <form>
+        <h3>Chat</h3>
+
+        <label for="messsage">Message here</label><br />
+
+        <textarea
+          placeholder="Type message.."
+          name="message"
+          required
+        ></textarea>
+        <button type="submit" class="btn">Send</button>
+      </form>
     </div>
-
-    <div class = "chat">
-        <form >
-          <h3>Chat</h3>
-
-          <label for="messsage">Message here</label><br>
-
-          <textarea placeholder="Type message.." name="message" required></textarea>
-          <button type="submit" class="btn">Send</button>
-        </form>
-    </div>
-
-    <div></div>
-</body>
+  </body>
 </html>
