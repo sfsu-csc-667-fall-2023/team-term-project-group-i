@@ -71,6 +71,42 @@
             border: 5px solid;
         }
 
+        .buyOption{
+            text-align: center;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            border: 2px solid;
+        }
+
+        .tradeOption{
+            text-align: center;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            grid-column-start: 5;
+            grid-column-end: 6;
+            border: 2px solid;
+        }
+
+        .sellOption{
+            text-align: center;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            grid-column-start: 7;
+            grid-column-end: 8;
+            border: 2px solid;
+        }
+
+        .manageOption{
+            text-align: center;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            grid-column-start: 9;
+            grid-column-end: 10;
+            border: 2px solid;
+        }
+
         .other-users{
             float: auto;
             padding-left:81%;
@@ -91,10 +127,10 @@
 </head>
 <body>
     <ul id = "nav">
-        <li><a style="float:left">LOGO</a></li>
+        <li><a style="float:left">Monopoly</a></li>
         <li><a href="/" style="float:left">Landing</a></li>
         <li><a href="/lobby" style="float:left">Lobby</a></li>
-        <li ><a style="float:right">PFP</a></li>
+        <li ><a style="float:right">Username</a></li>
         <li><a href="/auth/sign_up" style="float:right">Logout</a></li>
     </ul>
     
@@ -121,6 +157,10 @@
         <!--Setting up the middle of the board. The card piles should draw cards-->
         <div class="chestPile"><a href="">Community Chest</a></div> 
         <div class="chancePile"><a href="">Chance</a></div>
+        <div class="buyOption">Buy</div>
+        <div class="tradeOption">Trade</div>
+        <div class="sellOption">Sell</div>
+        <div class="manageOption">Manage</div>
         <div class = "midsquare"> </div> 
 
         <div class="tile">Pacific Avenue <p>Price:$300</p></div>

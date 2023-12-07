@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "development") {
     require("dotenv").config();
 }
 
-const testRoutes = require("./routes/test/index.js");
+//const testRoutes = require("./routes/test/index.js");
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
 
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/test", testRoutes);
+//app.use("/test", testRoutes);
 
 const PORT = process.env.PORT || 3000;
 
@@ -59,7 +59,6 @@ app.use("/", landingRoutes);
 app.use("/auth", authRoutes);
 app.use("/lobby", globalLobbyRoutes);
 app.use("/games", gameRoutes);
-//app.use("/test", testRoutes);
 
 app.use((_request, _response, next) => {
     next(createError(404));
