@@ -58,4 +58,9 @@ router.post("/sign_in", async (request, response) => {
 
 });
 
+router.get("/login", (request, response) => {
+    response.render("login")
+}); 
+
+
 module.exports = router; 
