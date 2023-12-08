@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width = device-width, initial-scale=1.0">
-    <title>DOCUMENT</title>
-    <style>
-        body{
-            background-color: lightblue;
-        }
-    </style>
-</head>
-<body>
-   
-    <center><form id = "signUpInfo">
-        <h3><a href="/" style="text-decoration:none">Landing</a></h3> <h2>Sign Up Page</h2>
-        <label>Email:</label><br>   
-        <input type="text" id="email" name="email" required><br>
-        <label>Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label>Password:</label><br>
-        <input type="text" id="password" name="password" required><br>
-        <label>Confirm Password:</label><br>
-        <input type="text" id="confirmPassword" name="confirmPassword" required><br>
-        <input type="submit" value="Submit">
-    </form></center>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <style>
+            body{
+                background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class = "container">
+                <ul>
+                    <li>Team I's Game</li>
+                </ul>
+                <ul>
+                    <li><a href = "/">Landing</a></li>
+                    <li><a href = "/auth/sign_up">Sign up</a></li>
+                    <li><a href = "/lobby">Lobby</a></li>
+                    <li><a href = "/games/33">Game 33</a></li>
+                </ul>
+        </nav>
+        <main class = "container">
+            <h1>Sign Up</h1>
+
+            <form method = "post" action = "/auth/sign_up">
+                <label for = "email">
+                    <input type = "email" name = "email" id = "email" placeholder = "Email">
+                </label>
+                <label for = "password">
+                    <input
+                    type = "password"
+                    name = "password"
+                    id = "password"
+                    placeholder = "Password"
+                /></label>
+                <button type = "submit">Login</button>
+            </form>
+        </main>
+    </body>
 </html>

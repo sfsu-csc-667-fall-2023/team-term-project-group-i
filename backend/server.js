@@ -1,32 +1,28 @@
 const path = require("path");
+
 const express = require("express");
 const createError = require("http-errors");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-
-if (process.env.NODE_ENV === "development") {
-    require("dotenv").config();
-}
-
-const testRoutes = require("./routes/test/index.js");
-const requestTime = require("./middleware/request-time");
-const rootRoutes = require("./routes/root");
-
-
+const bodyParser = require("body-parser");
 
 const app = express();
 app.use(morgan("dev"));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use("/test", testRoutes);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "static")));
 
 const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === "development") {
-    //require("dotenv").config();
+    require("dotenv").config();
     const livereload = require("livereload");
     const connectLiveReload = require("connect-livereload");
     const liveReloadServer = livereload.createServer();
@@ -39,9 +35,10 @@ if (process.env.NODE_ENV === "development") {
     app.use(connectLiveReload());
 }
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "static")));
+const testRoutes = require("./routes/test/index.js");
+const requestTime = require("./middleware/request-time");
+const rootRoutes = require("./routes/root");
+app.use("/test", testRoutes);
 
 
 
