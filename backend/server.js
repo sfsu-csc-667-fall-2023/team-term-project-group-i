@@ -13,14 +13,12 @@ const testRoutes = require("./routes/test/index.js");
 const requestTime = require("./middleware/request-time");
 const rootRoutes = require("./routes/root");
 
-
-
 const app = express();
 app.use(morgan("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({
+    //extended: true
+//}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
