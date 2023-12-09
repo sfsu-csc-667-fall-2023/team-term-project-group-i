@@ -7,14 +7,14 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const { viewSessionData } = require("./middleware/view-session");
+const { sessionLocals } = require("./middleware/session-locals");
+const { isAuthenticated } = require("./middleware/is-authenticated");
 
-if (process.env.NODE_ENV === "development") {
-    require("dotenv").config();
-}
-
-const testRoutes = require("./routes/test/index.js");
-const requestTime = require("./middleware/request-time");
-const rootRoutes = require("./routes/root");
+//const {
+    //viewSessionData,
+    //sessionLocals,
+    ///isAuthenticated,
+//} = require("./middleware/");
 
 const app = express();
 
@@ -49,34 +49,29 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(session({
+    store: new (require('connect-pg-simple')(session))({
+        createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
     cookie: { secure: process.env.NODE_ENV != "development" }
 }))
 if (process.env.NODE_ENV === "development") {
     app.use(viewSessionData);
 }
 
+app.use(sessionLocals);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 
+const Routes = require("./routes");
 
-
-//app.use(requestTime); for middleware to check we get response
-
-//app.use("/", rootRoutes);
-
-const landingRoutes = require("./routes/landing");
-const authRoutes = require("./routes/authentication");
-const globalLobbyRoutes = require("./routes/global_lobby");
-const gameRoutes = require("./routes/game");
-
-app.use("/", landingRoutes);
-app.use("/auth", authRoutes);
-app.use("/lobby", globalLobbyRoutes);
-app.use("/games", gameRoutes);
+app.use("/", Routes.landing);
+app.use("/auth", Routes.authentication);
+app.use("/lobby", isAuthenticated, Routes.lobby);
+app.use("/games", isAuthenticated, Routes.game);
 
 app.use((_request, _response, next) => {
   next(createError(404));
