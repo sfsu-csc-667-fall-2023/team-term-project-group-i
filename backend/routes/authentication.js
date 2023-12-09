@@ -27,14 +27,16 @@ router.post("/sign_up", async (request, response) => {
     //Store in the DB
     const { id } = Users.create(email, hash);
 
-    // TODO: Store in session
+    //Store in session
+    request.session.id = user.id;
+    request.session.email = user.email;
 
     //Redirect to lobby
     response.redirect("/lobby");
 });
 
 router.post("/sign_in", async (request, response) => {
-    // Given data, add user to Users table; redirect to global lobby
+    //Given data, add user to Users table; redirect to global lobby
     const { email, password } = request.body;
 
     try {
@@ -42,7 +44,13 @@ router.post("/sign_in", async (request, response) => {
         const isValidUser = await bcrypt.compare(password, user.password);
 
         if(isValidUser) {
-            //TODO: Store in session
+            //Store in session
+            request.session.user = {
+                id: user.id,
+                email
+            }
+
+            console.log({user, session: request.session });
             
             response.redirect("/lobby");
             return;
