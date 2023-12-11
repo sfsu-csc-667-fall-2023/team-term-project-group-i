@@ -28,8 +28,8 @@ router.post("/sign_up", async (request, response) => {
     const { id } = Users.create(email, hash);
 
     //Store in session
-    request.session.id = user.id;
-    request.session.email = user.email;
+    request.session.id = Users.id;
+    request.session.email = Users.email;
 
     //Redirect to lobby
     response.redirect("/lobby");
