@@ -2,13 +2,10 @@
 <html lang = "en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width = device-width, initial-scale=1.0">
-        <title>Sign Up</title>
-        <style>
-            body{
-                background-color: lightblue;
-            }
-        </style>
+        <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sign-Up Page</title>
+        <Link rel="stylesheet" href="/css/landingStyle.css" />
     </head>
     <body>
         <nav class = "container">
@@ -22,22 +19,50 @@
                     <li><a href = "/games/33">Game 33</a></li>
                 </ul>
         </nav>
-        <main class = "container">
-            <h1>Sign Up</h1>
-
-            <form method = "post" action = "/auth/sign_up">
-                <label for = "email">
-                    <input type = "email" name = "email" id = "email" placeholder = "Email">
-                </label>
-                <label for = "password">
-                    <input
-                    type = "password"
-                    name = "password"
-                    id = "password"
-                    placeholder = "Password"
-                /></label>
-                <button type = "submit">Login</button>
+        <div class="outer-container">
+            <form method="post" action="/auth/sign_in">
+                <div class="loginBox">
+                    <h1 class="headerText"><u><b>Sign Up</b></u></h1>
+                    <table class="signForm">
+                        <tr>
+                            <td>
+                                Email:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for = "email">
+                                    <input type = "email" name = "email" id = email" placeholder = "Email" />
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="spacing">
+                                Password:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for = "password">
+                                    <input
+                                        type = "password"
+                                        name = "password"
+                                        id = "password"
+                                        placeholder = "Password" 
+                                    />
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type = "submit" class="loginButton">Sign Up</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="center">Already have an account?</p>
+                    <p class="center"><a href="/">Sign In</a></p>
+                </div>
             </form>
-        </main>
+        </div>
     </body>
 </html>
