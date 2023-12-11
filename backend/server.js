@@ -1,4 +1,5 @@
 const path = require("path");
+const { createServer } = require("http");
 
 const express = require("express");
 const createError = require("http-errors");
@@ -6,17 +7,19 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const { Server } = require("socket.io");
 const { viewSessionData } = require("./middleware/view-session");
 const { sessionLocals } = require("./middleware/session-locals");
 const { isAuthenticated } = require("./middleware/is-authenticated");
 
-//const {
-    //viewSessionData,
-    //sessionLocals,
-    ///isAuthenticated,
-//} = require("./middleware/");
+// const {
+//     viewSessionData,
+//     sessionLocals,
+//     isAuthenticated,
+// } = require("./middleware/");
 
 const app = express();
+const httpServer = createServer(app);
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -48,19 +51,30 @@ if (process.env.NODE_ENV === "development") {
     app.use(connectLiveReload());
 }
 
-app.use(session({
+const sessionMiddleware = session({
     store: new (require('connect-pg-simple')(session))({
         createTableIfMissing: true,
     }),
     secret: process.env.SESSION_SECRET,
     resave: false,
-    cookie: { secure: process.env.NODE_ENV != "development" }
-}))
+    cookie: { secure: process.env.NODE_ENV != "development" },
+});
+
+app.use(sessionMiddleware);
+
 if (process.env.NODE_ENV === "development") {
     app.use(viewSessionData);
 }
 
 app.use(sessionLocals);
+const io = new Server(httpServer);
+io.engine.use(sessionMiddleware);
+
+io.on("connection", socket => {
+    console.log("connection");
+})
+
+//TODO
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -77,6 +91,6 @@ app.use((_request, _response, next) => {
   next(createError(404));
 });
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
