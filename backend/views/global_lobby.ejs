@@ -59,52 +59,22 @@
     <script src="/scripts/chat.js" defer></script>
   </head>
   <body>
-    <ul id="nav">
-      <li><a style="float: left">Monopoly</a></li>
-      <li><a href="/" style="float: left">Landing</a></li>
-      <li><a href="/lobby" style="float: left">Lobby</a></li>
-      <li><a style="float: right">Username</a></li>
-      <li><a href="auth/logout" style="float: right">Logout</a></li>
-    </ul>
-
-    <h2>Global Lobby Page: Global Chat, Room Creation, & Joining Games</h2>
-    <h2><%=user.id %> <%= user.email %></h2>
-
-    <center>
-      <form id="creatingNewGame">
-        <label>Create a Game: </label>
-        <input
-          type="text"
-          id="newGame"
-          name="newGame"
-          placeholder="New Game Name..."
-        />
-        <input type="submit" value="Submit" />
-      </form>
-      <h3>Available Games:</h3>
-    </center>
-
-    <!-- Make a new card per available game?    -->
-    <div class="row">
-      <div class="column">
-        <div class="card">
-          <h3><a href="/games/33" style="text-decoration: none">Game 33</a></h3>
-          <p>Information...</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="chat" style="float: right">
-      <form>
-        <h3>Chat</h3>
-        <label for="messsage">Message here</label><br />
-        <textarea
-          placeholder="Type message.."
-          name="message"
-          required
-        ></textarea>
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </div>
+    <nav class="container">
+      <ul>
+        <li>Team I's Game</li>
+      </ul>
+      <ul>
+        <li><a href="/">Landing</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        <li><a href="/lobby">Lobby</a></li>
+        <li><a href="/games/33">Game 33</a></li>
+      </ul>
+    </nav>
+    <main class="container">
+      <h1>Lobby</h1>
+      <h2><%= user.id %> <%= user.email %></h2>
+      
+      <%- include('partials/chat', { roomId: 0 }) %>
+    </main>
   </body>
 </html>

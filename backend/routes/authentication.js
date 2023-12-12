@@ -25,11 +25,11 @@ router.post("/sign_up", async (request, response) => {
     const hash = await bcrypt.hash(password, salt);
 
     //Store in the DB
-    const { id } = Users.create(email, hash);
+    const user = Users.create(email, hash);
 
     //Store in session
-    request.session.id = Users.id;
-    request.session.email = Users.email;
+    request.session.id = user.id;
+    request.session.email = user.email;
 
     //Redirect to lobby
     response.redirect("/lobby");
