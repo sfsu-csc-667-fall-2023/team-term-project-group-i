@@ -12,11 +12,11 @@ const { viewSessionData } = require("./middleware/view-session");
 const { sessionLocals } = require("./middleware/session-locals");
 const { isAuthenticated } = require("./middleware/is-authenticated");
 
-// const {
-//     viewSessionData,
-//     sessionLocals,
-//     isAuthenticated,
-// } = require("./middleware/");
+//  const {
+//      viewSessionData,
+//      sessionLocals,
+//      isAuthenticated,
+//  } = require("./middleware/");
 
 const app = express();
 const httpServer = createServer(app);
@@ -69,9 +69,10 @@ if (process.env.NODE_ENV === "development") {
 app.use(sessionLocals);
 const io = new Server(httpServer);
 io.engine.use(sessionMiddleware);
+app.set("io", io);
 
 io.on("connection", socket => {
-    console.log("connection");
+    socket.join(socket.request.session.id);
 })
 
 //TODO
@@ -84,8 +85,9 @@ const Routes = require("./routes");
 
 app.use("/", Routes.landing);
 app.use("/auth", Routes.authentication);
-app.use("/lobby", isAuthenticated, Routes.lobby);
-app.use("/games", isAuthenticated, Routes.game);
+app.use("/lobby", isAuthenticated, Routes.lobby, Routes.chat);
+app.use("/games", isAuthenticated, Routes.game, Routes.chat);
+// app.use("/chat", isAuthenticated, Routes.chat);
 
 app.use((_request, _response, next) => {
   next(createError(404));
