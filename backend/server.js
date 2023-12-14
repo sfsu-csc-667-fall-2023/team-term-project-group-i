@@ -8,15 +8,12 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const { Server } = require("socket.io");
-const { viewSessionData } = require("./middleware/view-session");
-const { sessionLocals } = require("./middleware/session-locals");
-const { isAuthenticated } = require("./middleware/is-authenticated");
 
-//  const {
-//      viewSessionData,
-//      sessionLocals,
-//      isAuthenticated,
-//  } = require("./middleware/");
+const {
+    viewSessionData,
+    sessionLocals,
+    isAuthenticated,
+} = require("./middleware/");
 
 const app = express();
 const httpServer = createServer(app);
@@ -73,7 +70,11 @@ app.set("io", io);
 
 io.on("connection", socket => {
     socket.join(socket.request.session.id);
-})
+
+    if(socket.handshake.query != undefined) {
+        socket.join(socket.handshake.query.gameSocketId);
+    }
+});
 
 //TODO
 
