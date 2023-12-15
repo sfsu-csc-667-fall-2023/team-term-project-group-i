@@ -48,3 +48,55 @@ body {
   text-align: center;
   background-color: rgb(96, 173, 199);
 }
+
+.top-grid {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: x-large;
+}
+
+.top-grid td{
+  text-align: center;
+  width: 33.33%;
+}
+
+.game-container {
+  margin: auto;
+  width: 90%;
+  border: 2px solid black;
+  padding-top: 2rem;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-cards {
+  background-color: grey;
+  border-radius: 25px;
+  color: white;
+  height: 150px;
+  width: 150px;
+}
+
+.center {
+  text-align: center;
+}
+
+.button-center {
+  margin-top: 55%;
+  margin-left: 25%;
+}
+
+.line {
+  background-color: black;
+  width: 80%;
+  height: 5px;
+  margin: auto;
+}
+
+.nogame-text {
+  margin-top: 2rem;
+  text-align: center;
+}
