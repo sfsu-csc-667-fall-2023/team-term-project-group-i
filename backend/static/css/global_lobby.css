@@ -63,7 +63,6 @@ body {
 .game-container {
   margin: auto;
   width: 90%;
-  border: 2px solid black;
   padding-top: 2rem;
   display: flex;
   gap: 100px;
