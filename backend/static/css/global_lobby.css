@@ -1,0 +1,50 @@
+body {
+  background-color: lightblue;
+}
+
+#nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: hidden;
+  background-color: #216ec6;
+}
+
+#nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.row {
+  margin: 0 -5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 15%;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.card {
+  padding: 16px;
+  text-align: center;
+  background-color: rgb(96, 173, 199);
+}
