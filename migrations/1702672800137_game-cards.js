@@ -65,7 +65,10 @@ exports.up = (pgm) => {
 
     pgm.createTable("chance_cards", {
         chance_card_id: { 
-            type: "int" 
+            type: "int",
+            primaryKey: true,
+            notNull: true,
+            unique: true 
         },
         collect_money: {
             type: "boolean", 
@@ -109,7 +112,12 @@ exports.up = (pgm) => {
     }
 
     pgm.createTable("community_cards", {
-        community_card_id: "int",
+        community_card_id: {
+            type: "int",
+            primaryKey: true,
+            notNull: true,
+            unique: true
+        },
         collect_money: { 
             type: "boolean",
             default: false 
@@ -142,7 +150,10 @@ exports.up = (pgm) => {
 
     pgm.createTable("property_cards", {
         property_card_id: {
-            type: "int" 
+            type: "int",
+            primaryKey: true,
+            notNull: true,
+            unique: true 
         },
         owned: {
             type: "boolean", 
@@ -210,12 +221,18 @@ exports.up = (pgm) => {
         },
         community_card_id: {
             type: "int",
+            primaryKey: true,
+            references: "community_cards"
         },
         chance_card_id: {
             type: "int",
+            primaryKey: true,
+            references: "chance_cards"
         },
         property_card_id: {
             type: "int",
+            primaryKey: true,
+            references: "property_cards"
         }
     });
 };
@@ -225,9 +242,9 @@ exports.up = (pgm) => {
  * @param {import("node-pg-migrate/dist/types").MigrationBuilder} pgm 
  */
 exports.down = (pgm) => {
+    pgm.dropTable("game_cards");
     pgm.dropTable("chance_cards");
     pgm.dropTable("community_cards");
-    pgm.dropTable("game_cards");
     pgm.dropTable("property_cards");
     pgm.dropTable("property_upgrade_price");
 
