@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const cardData = require("../card_data");
 
 /**
  * @param {import("node-pg-migrate/dist/types").MigrationBuilder} pgm 
@@ -11,7 +12,8 @@ exports.up = (pgm) => {
         "red", 
         "yellow", 
         "green", 
-        "dark_blue", 
+        "dark_blue",
+        "purple", 
         "stations", 
         "utilities",
         "jail",
@@ -26,7 +28,7 @@ exports.up = (pgm) => {
         "Indiana_Avenue", "Illinois_Avenue", "Atlantic_Avenue", 
         "Ventnor_Avenue","Marvin_Gardens", "Pacific_Avenue",
         "North_Carolina_Avenue", "Pennsylvania_Avenue", "Park_Place",
-        "Boardwalk"
+        "Boardwalk", "Jail", "Go"
     ]);
 
     pgm.createType("railroad_name", 
@@ -62,7 +64,7 @@ exports.up = (pgm) => {
     ]);
 
     pgm.createTable("chance_cards", {
-        id: { 
+        chance_card_id: { 
             type: "int" 
         },
         collect_money: {
@@ -97,23 +99,11 @@ exports.up = (pgm) => {
         },
         tax_amount: {
             type: "int" 
-        },
-        if_chairman: {
-            type: "boolean", 
-            default: false 
         }
     });
 
-    const sql = "INSERT INTO chance_cards (value) VALUES";
-    const chanceCards = 15;
-    const communityCards = 16;
-
-    for(i = 0; i <= chanceCards; i++) {
-        
-    }
-
     pgm.createTable("community_cards", {
-        id: "int",
+        community_card_id: "int",
         collect_money: { 
             type: "boolean",
             default: false 
@@ -139,7 +129,7 @@ exports.up = (pgm) => {
     });
 
     pgm.createTable("property_cards", {
-        id: {
+        property_card_id: {
             type: "int" 
         },
         owned: {

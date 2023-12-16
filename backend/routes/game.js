@@ -45,7 +45,7 @@ router.get("/:id/join", async(request, response) => {
     const userCount = await Games.userCount(gameId);
 
     if(userCount > 1 && userCount >= 8) {
-        // TODO: Perform game setuup and emit initial game state
+        // TODO: Perform game setup and emit initial game state
         const gameState = await Games.initialize(gameId);
         io.emit(GAME_CONSTANTS.START, gameState);
     }

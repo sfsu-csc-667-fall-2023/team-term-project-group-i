@@ -1,3 +1,35 @@
 module.exports = [
-    
+    { property_type: "light_blue", property_name: "Conneticut_Avenue" },
+    { property_type: "light_blue", property_name: "Vermont_Avenue" },
+    { property_type: "light_blue", property_name: "Oriental_Avenue" },
+    { property_type: "pink", property_name: "Virginia_Avenue" },
+    { property_type: "pink", property_name: "States_Avenue" },
+    { property_type: "pink", property_name: "St_Charles_Place" },
+    { property_type: "orange", property_name: "New_York_Avenue" },
+    { property_type: "orange", property_name: "Tennesse_Avenue" },
+    { property_type: "orange", property_name: "St_James_Place" },
+    { property_type: "red", property_name: "Illinois_Avenue" },
+    { property_type: "red", property_name: "Indiana_Avenue" },
+    { property_type: "red", property_name: "Kentucky_Avenue" },
+    { property_type: "yellow", property_name: "Atlantic_Avenue" },
+    { property_type: "yellow", property_name: "Ventnor_Avenue" },
+    { property_type: "yellow", property_name: "Marvin_Gardens" },
+    { property_type: "green", property_name: "Pacific_Avenue" },
+    { property_type: "green", property_name: "North_Carolina_Avenue" },
+    { property_type: "green", property_name: "Pennslyvania_Avenue" },
+    { property_type: "dark_blue", property_name: "Park_Place" },
+    { property_type: "dark_blue", property_name: "Boardwalk" },
+    { property_type: "purple", property_name: "Mediterranean_Avenue" },
+    { property_type: "purple", property_name: "Baltic_Avenue" },
+
+    { property_type: "stations", railroad_name: "Reading_Railroad" },
+    { property_type: "stations", railroad_name: "Pennsylvania_Railroad" },
+    { property_type: "stations", railroad_name: "Baltimore_And_Ohio_Railroad" },
+    { property_type: "stations", railroad_name: "Short_Line" },
+
+    { property_type: "utilities", utility_name: "Electric_Company" },
+    { property_type: "utilities", utility_name: "Water_Works" },
+
+    { property_type: "jail", property_name: "Jail" },
+    { property_type: "go", property_name: "Go" }
 ];

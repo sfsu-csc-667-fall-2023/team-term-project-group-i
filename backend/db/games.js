@@ -22,8 +22,8 @@ const SHUFFLED_CHANCE_CARDS = "SELECT *, random() AS rand FROM game_cards.chance
 
 const initialize = async (gameId) => {
     //shuffled chance, community cards
-    const shuffledCommunityCards = db.many(SHUFFLED_COMMUNITY_CARDS);
-    const shuffledChanceCards = db.many(SHUFFLED_CHANCE_CARDS);
+    const shuffledCommunityCards = await db.many(SHUFFLED_COMMUNITY_CARDS);
+    const shuffledChanceCards = await db.many(SHUFFLED_CHANCE_CARDS);
 
     console.log(shuffledCommunityCards);
     console.log(shuffledChanceCards);
