@@ -4,99 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width = device-width, initial-scale=1.0" />
     <title>Global Lobby</title>
-    <style>
-      body {
-        background-color: lightblue;
-      }
-
-      #nav {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: auto;
-        overflow: hidden;
-        background-color: #216ec6;
-      }
-
-      #nav li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-
-      .row {
-        margin: 0 -5px;
-      }
-
-      .row:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      .column {
-        float: left;
-        width: 15%;
-        padding: 0 10px;
-      }
-
-      @media screen and (max-width: 600px) {
-        .column {
-          width: 100%;
-          display: block;
-          margin-bottom: 20px;
-        }
-      }
-
-      .card {
-        padding: 16px;
-        text-align: center;
-        background-color: rgb(96, 173, 199);
-      }
-    </style>
+    <link rel="stylesheet" href="/css/global_lobby.css">
     <script src="/scripts/chat.js" defer></script>
     <script src="/scripts/lobby.js" defer></script>
   </head>
   <body>
-    <nav class="container">
-      <ul>
-        <li>Team I's Game</li>
-      </ul>
-      <ul>
-        <li><a href="/">Landing</a></li>
-        <li><a href="/auth/logout">Logout</a></li>
-        <li><a href="/lobby">Lobby</a></li>
-      </ul>
-    </nav>
+    <ul id="nav">
+      <li><a style="float: left">Monopoly</a></li>
+      <li><a style="float: right">User: <%=user.id %></a></li>
+      <li><a href="auth/logout" style="float: right">Logout</a></li>
+      <li><a href="/lobby" style="float: right">Lobby</a></li>
+    </ul>
     <main class="container">
-      <h1>Lobby</h1>
-      <h2><%= user.id %> <%= user.email %></h2>
+      <!-- <h2><u>ID:</u> <%= user.id %> <br/><u>User:</u> <%= user.email %></h2> -->
 
-      <div class="grid">
-        <div>
-          <h2>Available Games</h2>
-          <section id="game-list">
-            <ul>
-              <% availableGames.forEach(game => { %>
-                <li><a href="/games/<%= game.id %>/join">Join <%= game.id %></a>
-                </li>
-              <% }) %>
-            </ul>
-          </section>
-          
-          <template id="join-game-entry">
-            <li>
-              <a href=""></a>
-            </li>
-          </template>
-
-          <form action="/games/create" method="get">
-            <button type="submit">Create Game</button>
-          </form>
-        </div>
+      <table class="top-grid" >
+        <tr>
+          <td>
+            <form action="/games/create" method="get">
+              <button type="submit">Create Game</button>
+            </form>
+          </td>
+          <td>
+            <u><b>Games</b></u>
+          </td>
+          <td>
+            /maybe a search bar/
+          </td>
+        </tr>
+      </table>
+      <div class="line">
       </div>
+
+      <% if(!availableGames.length){ %>
+        <h3 class="nogame-text">No games are currently being played!</h3>
+        <h4 class="nogame-text">Click <i>Create Game</i> to make a lobby!</h4>        
+
+      <% } else { %>          
+        <div class="game-container">
+          <% availableGames.forEach(game=> { %>
+            <div class="game-cards">
+              <p class="center">Game <%= game.id %></p>
+              <div class="button-center">
+                 <button>
+                  <a href="/games/<%= game.id %>/join">Join game</a>
+                </button>
+              </div>
+         </div>
+         <% }) %>
+        </div>
+      <% } %>
       
       <%- include('partials/chat', { roomId: 0 }) %>
     </main>
