@@ -4,6 +4,7 @@ const CREATE = "INSERT INTO games (game_socket_id) VALUES ($1) RETURNING id";
 const ADD_USERS = "INSERT INTO game_users (user_id, game_id) VALUES ($1, $2)";
 const GET_GAME = "SELECT * FROM games WHERE id=$1";
 const GET_AVAILABLE_GAMES = "SELECT * FROM games";
+const GET_USER_COUNT = "SELECT COUNT(*) FROM game_users WHERE game_id=$1";
 
 const create = (gameSocketId) => db.one(CREATE, [gameSocketId]);
 
@@ -13,6 +14,31 @@ const getGame = (gameId) => db.one(GET_GAME, gameId);
 
 const getAvailableGames = () => db.any(GET_AVAILABLE_GAMES);
 
+const userCount = (gameId) => db.one(GET_USER_COUNT, [gameId])
+    .then(({ count }) => parseInt(count));
+
+const SHUFFLED_COMMUNITY_CARDS = "SELECT *, random() AS rand FROM game_cards.community_card_id";
+const SHUFFLED_CHANCE_CARDS = "SELECT *, random() AS rand FROM game_cards.chance_card_id";
+
+const initialize = async (gameId) => {
+    //shuffled chance, community cards
+    const shuffledCommunityCards = db.many(SHUFFLED_COMMUNITY_CARDS);
+    const shuffledChanceCards = db.many(SHUFFLED_CHANCE_CARDS);
+
+    console.log(shuffledCommunityCards);
+    console.log(shuffledChanceCards);
+    //Tile deed cards
+    //Each Player starts with $1500
+    //Add player to board
+    //Set turn for player
+
+}
+
 module.exports = {
-    create, addUser, getGame, getAvailableGames
+    create,
+    addUser,
+    getGame,
+    getAvailableGames,
+    userCount,
+    initialize
 };

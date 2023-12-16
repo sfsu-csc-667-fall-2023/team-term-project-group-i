@@ -139,13 +139,24 @@
     </nav>
     <main class="container">
       <h1>Game <%= id %></h1>
+      <section id="game-board">
+        <form action="/games/<%= id %>/test" method="post" id="test-form">
+          <button type="submit">Test</button>
+        </form>
+      </section>
       <input
        type="hidden"
        name="game-socket-id"
-      id="game-socket-id" 
-      value="<%= gameSocketId %>"
+       id="game-socket-id" 
+       value="<%= gameSocketId %>"
       />
 
+      <input
+       type="hidden"
+       name="user-socket-id"
+       id="user-socket-id" 
+       value="<%= userSocketId %>"
+      />
       <!--Monoploy Board-->
       <div class="board-grid">
         <!-- First Row-->

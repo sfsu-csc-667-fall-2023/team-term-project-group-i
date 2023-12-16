@@ -10,6 +10,12 @@ exports.up = (pgm) => {
         },
         game_id: {
             type: "int"
+        },
+        owned_properties: {
+            type: "int",
+        },
+        currency: {
+            type: "int",
         }
     });
 };

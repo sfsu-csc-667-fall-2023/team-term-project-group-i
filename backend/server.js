@@ -69,10 +69,10 @@ io.engine.use(sessionMiddleware);
 app.set("io", io);
 
 io.on("connection", socket => {
-    socket.join(socket.request.session.id);
+    socket.join(socket.request.id);
 
     if(socket.handshake.query != undefined) {
-        socket.join(socket.handshake.query.gameSocketId);
+        socket.join(socket.handshake.query.id);
     }
 });
 
