@@ -102,6 +102,12 @@ exports.up = (pgm) => {
         }
     });
 
+    const chanceCardSql = "INSERT INTO chance_cards (chance_card_id) VALUES";
+    for(let chanceCard = 1; chanceCard <= 15; chanceCard++) {
+        const fillChanceCard = `${chanceCardSql} (${chanceCard})`
+        pgm.sql(fillChanceCard);
+    }
+
     pgm.createTable("community_cards", {
         community_card_id: "int",
         collect_money: { 
@@ -128,6 +134,12 @@ exports.up = (pgm) => {
         }
     });
 
+    const communityCardSql = "INSERT INTO community_cards (community_card_id) VALUES";
+    for(let communityCard = 1; communityCard <= 17; communityCard++) {
+        const fillCommunityCard = `${communityCardSql} (${communityCard})`
+        pgm.sql(fillCommunityCard);
+    }
+
     pgm.createTable("property_cards", {
         property_card_id: {
             type: "int" 
@@ -137,16 +149,13 @@ exports.up = (pgm) => {
             default: false 
         },
         propertyName: {
-            type: "property_name", 
-            notNull: true 
+            type: "property_name",  
         },
         railroadName: {
-            type: "railroad_name", 
-            notNull: true 
+            type: "railroad_name",  
         },
         utilityName: {
             type: "utility_name", 
-            notNull: true 
         },
         property_type: {
             type: "property_types" 
@@ -155,14 +164,18 @@ exports.up = (pgm) => {
             type: "int" 
         },
         house_cost: {
-            type: "int", 
-            notNull: true 
+            type: "int",  
         },
         rent_amount: {
-            type: "int", 
-            notNull: true 
+            type: "int",  
         }
     });
+
+    const propertyCardSql = "INSERT INTO property_cards (property_card_id) VALUES";
+    for(let propertyCard = 1; propertyCard <= 30; propertyCard++) {
+        const fillPropertyCard = `${propertyCardSql} (${propertyCard})`
+        pgm.sql(fillPropertyCard);
+    }
 
     pgm.createTable("property_upgrade_price", {
         id: {
