@@ -221,20 +221,22 @@ exports.up = (pgm) => {
         },
         community_card_id: {
             type: "int",
-            primaryKey: true,
-            references: "community_cards"
         },
         chance_card_id: {
             type: "int",
-            primaryKey: true,
-            references: "chance_cards"
         },
         property_card_id: {
             type: "int",
-            primaryKey: true,
-            references: "property_cards"
         }
     });
+
+    const fillGameCommunityCards = "INSERT INTO game_cards (community_card_id) SELECT community_card_id FROM community_cards";
+    const fillGameChanceCards = "INSERT INTO game_cards (chance_card_id) SELECT chance_card_id FROM chance_cards";
+    const fillGamePropertyCards = "INSERT INTO game_cards (property_card_id) SELECT property_card_id FROM property_cards";
+
+    pgm.sql(fillGameChanceCards);
+    pgm.sql(fillGameCommunityCards);
+    pgm.sql(fillGamePropertyCards);
 };
 
 

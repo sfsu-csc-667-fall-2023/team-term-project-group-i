@@ -1,3 +1,4 @@
+//const { connection: db, pgp} = require("./connection");
 const db = require("./connection");
 
 const CREATE = "INSERT INTO games (game_socket_id) VALUES ($1) RETURNING id";
@@ -17,16 +18,17 @@ const getAvailableGames = () => db.any(GET_AVAILABLE_GAMES);
 const userCount = (gameId) => db.one(GET_USER_COUNT, [gameId])
     .then(({ count }) => parseInt(count));
 
-const SHUFFLED_COMMUNITY_CARDS = "SELECT *, random() AS rand FROM game_cards.community_card_id";
-const SHUFFLED_CHANCE_CARDS = "SELECT *, random() AS rand FROM game_cards.chance_card_id";
+const SHUFFLED_COMMUNITY_CARDS = "SELECT *, random() AS rand FROM game_cards";
+//const SHUFFLED_CHANCE_CARDS = "SELECT *, random() AS rand FROM game_cards";
 
 const initialize = async (gameId) => {
     //shuffled chance, community cards
     const shuffledCommunityCards = await db.many(SHUFFLED_COMMUNITY_CARDS);
-    const shuffledChanceCards = await db.many(SHUFFLED_CHANCE_CARDS);
-
-    console.log(shuffledCommunityCards);
-    console.log(shuffledChanceCards);
+   // const shuffledChanceCards = await db.many(SHUFFLED_CHANCE_CARDS);
+   //const columns = new pgp.helpers.ColumnSet(['user_id', 'game_id', 'community_card_id', 'chance_card_id', 'property_card_id'], { table: 'game_cards' });
+    //const values = shuffledDeck.map(({ }))
+    //console.log({shuffledCommunityCards});
+   //console.log({shuffledChanceCards});
     //Tile deed cards
     //Each Player starts with $1500
     //Add player to board
